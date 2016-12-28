@@ -1,0 +1,68 @@
+{
+	"year": 2016,
+	"month": 1,
+	"total_budget": 80000,
+	"expenses": [{
+		"name": "正餐",
+		"budget": 8000,
+		"items": []
+	},{
+		"name": "衣裝",
+		"budget": 2000,
+		"items": []
+	},{
+		"name": "住宿",
+		"budget": 15000,
+		"items": [{
+			"name": "房租"
+		},{
+			"name": "公用"
+		}]
+	},{
+		"name": "交通",
+		"budget": 4000,
+		"items": []
+	},{
+		"name": "教育",
+		"budget": 4000,
+		"items": [{
+			"name": "書藉"
+		},{
+			"name": "數位"
+		}]
+	},{
+		"name": "娛樂",
+		"budget": 4000,
+		"items": [{
+			"name": "娛樂"
+		},{
+			"name": "零食"
+		},{
+			"name": "餐聚"
+		}]
+	},{
+		"name": "其他",
+		"budget": 2000,
+		"items": [{
+			"name": "生活"
+		},{
+			"name": "醫療"
+		},{
+			"name": "其他"
+		}]
+	}],
+	"investments": [{
+		"name": "定存",
+		"budget": 30000
+	},{
+		"name": "基金",
+		"budget": 10000
+	},{
+		"name": "保險",
+		"budget": 1341
+	}],
+	"liabilities": [{
+		"name": "學貸",
+		"budget": 500
+	}]
+}
