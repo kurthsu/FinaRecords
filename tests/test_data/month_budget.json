@@ -1,0 +1,32 @@
+{
+	"year": 2017,
+	"month": 1,
+	"total_budget": 50000,
+	"expenses": [{
+		"name": "food",
+		"budget": 8000,
+		"items": []
+	},{
+		"name": "housing",
+		"budget": 15000,
+		"items": [{
+			"name": "rent"
+		},{
+			"name": "utilities"
+		}]
+	}],
+	"investments": [{
+		"name": "saving",
+		"budget": 10000
+	},{
+		"name": "fund",
+		"budget": 10000
+	},{
+		"name": "insurance",
+		"budget": 1000
+	}],
+	"liabilities": [{
+		"name": "loan",
+		"budget": 10000
+	}]
+}
