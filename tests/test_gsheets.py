@@ -1,10 +1,9 @@
-from gsheets.google_sheets import GoogleSheets
+from gsheets.spreadsheet import Spreadsheet
 
 
 def main():
-    gsheets = GoogleSheets()
-    sheets = gsheets.find_sheets()
-    print(len(sheets))
+    spreadsheet_id = Spreadsheet.find_spreadsheet_id('2016')
+    Spreadsheet.list_sheets(spreadsheet_id)
 
 if __name__ == '__main__':
     main()
