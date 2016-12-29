@@ -31,5 +31,3 @@ class MonthBudget:
             self.liabilities = data['liabilities']
         except Exception as e:
             print("Exception on loading json file", e)
-
-    def
