@@ -44,6 +44,14 @@ class Spreadsheet:
     def list_sheets(spreadsheet_id):
         service = GoogleAPI().get_sheets_service()
         spreadsheet = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
+        sheets = []
         if spreadsheet:
             for sheet in spreadsheet['sheets']:
+                sheets.append({
+                    'id': sheet['properties']['sheetId'],
+                    'index': sheet['properties']['index'],
+                    'title': sheet['properties']['title']
+                })
                 pprint(sheet['properties'])
+
+        return sheets
