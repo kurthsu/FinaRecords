@@ -1,6 +1,6 @@
 #!/usr/local/bin/python3
 import calendar
-import sys
+import argparse
 
 from budgets.month_budget import MonthBudget
 from gsheets.spreadsheet import Spreadsheet
@@ -12,15 +12,19 @@ def fina_records(budget):
 
     sheet_title = calendar.month_abbr[month_budget.month]
 
-    spreadsheet_id = Spreadsheet.find_spreadsheet_id('Test')
-    sheets = Spreadsheet.list_sheets(spreadsheet_id)
-    sheet = (sh for sh in sheets if sh['title'] == sheet_title).next()
+    spreadsheet = Spreadsheet('Test')
+    sheets = spreadsheet.list_sheets()
+    sheet = next((sh for sh in sheets if sh['title'] == sheet_title), None)
     if sheet:
         # override
         pass
     else:
+
         print('there is no sheet for {}'.format(sheet_title))
 
 if __name__ == '__main__':
-    print(sys.argv[1])
-    # fina_records()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--file",
+                        help="loading budget file for one month")
+    args = parser.parse_args()
+    fina_records(args.file)

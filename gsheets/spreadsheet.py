@@ -5,6 +5,13 @@ from pprint import pprint
 class Spreadsheet:
     SHEETS_MIME_TYPE = 'application/vnd.google-apps.spreadsheet'
 
+    spreadsheet_id = None
+    service = None
+
+    def __init__(self, name):
+        self.spreadsheet_id = Spreadsheet.find_spreadsheet_id(name)
+        self.service = GoogleAPI().get_sheets_service()
+
     @staticmethod
     def search_spreadsheets(keyword=None):
         service = GoogleAPI().get_drive_service()
@@ -32,6 +39,7 @@ class Spreadsheet:
     @staticmethod
     def find_spreadsheet_id(name):
         service = GoogleAPI().get_drive_service()
+
         query = "name = '{}' and mimeType = '{}'".format(name, Spreadsheet.SHEETS_MIME_TYPE)
         results = service.files().list(q=query, spaces='drive',
                                        fields="files(id)").execute()
@@ -40,10 +48,8 @@ class Spreadsheet:
             return files[0]['id']
         return None
 
-    @staticmethod
-    def list_sheets(spreadsheet_id):
-        service = GoogleAPI().get_sheets_service()
-        spreadsheet = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
+    def list_sheets(self):
+        spreadsheet = self.service.spreadsheets().get(spreadsheetId=self.spreadsheet_id).execute()
         sheets = []
         if spreadsheet:
             for sheet in spreadsheet['sheets']:
@@ -53,5 +59,22 @@ class Spreadsheet:
                     'title': sheet['properties']['title']
                 })
                 pprint(sheet['properties'])
-
         return sheets
+
+    def create_sheet(self, title, index, budget):
+        requests = [{
+            'addSheet': {
+                'properties': {
+                    'title': title,
+                    'index': index
+                }
+            }
+        }]
+        response = self.service.spreadsheets().batchUpdate(spreadsheetId=self.spreadsheet_id,
+                                                           body={'requests': requests}).execute()
+        pprint(response)
+
+
+
+
+
